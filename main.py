@@ -35,7 +35,6 @@ while cap.isOpened():
         for hand_landmarks in result.multi_hand_landmarks:
             h, w, _ = frame.shape
 
-            # Índice y pulgar para mover/click/drag
             x1 = hand_landmarks.landmark[8].x
             y1 = hand_landmarks.landmark[8].y
             x2 = hand_landmarks.landmark[4].x
@@ -51,7 +50,6 @@ while cap.isOpened():
             screen_y = int(cy_mid * screen_h / h)
             pyautogui.moveTo(screen_x, screen_y, duration=0)
 
-            # Gesto índice-pulgar (drag/click)
             if distance < 25:
                 print(f"Moving to: {screen_x}, {screen_y}")
                 cv2.circle(frame, (cx_mid, cy_mid), 10, (255, 0, 255), cv2.FILLED)
@@ -74,7 +72,6 @@ while cap.isOpened():
                 clicked = False
 
 
-            # Gesto scroll: índice y medio levantados y juntos
             finger_tips = [8, 12, 16, 20]
             finger_pips = [6, 10, 14, 18]
             fingers_up = []
